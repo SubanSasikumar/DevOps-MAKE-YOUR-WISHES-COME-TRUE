@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'SUBJECT', description: 'Which subject do you want to study?')
+        choice(name: 'STUDY_DURATION', choices: ['15', '30', '45', '60'], description: 'Choose study duration in minutes')
+        text(name: 'STUDY_NOTES', description: 'Enter your study notes')
+        booleanParam(name: 'SKIP_TEST', description: 'Want to skip the knowledge test?')
+    }
+    
+    environment {
+        TOTAL_STUDY_TIME = 0
+    }
+    
+    stages {
+        stage('Prepare Study Session') {
+            steps {
+                script {
+                    echo "Subject: ${params.SUBJECT}"
+                    echo "Study Duration: ${params.STUDY_DURATION} minutes"
+                    echo "Study Notes: ${params.STUDY_NOTES}"
+                    echo "Skip Test: ${params.SKIP_TEST}"
+                }
+            }
+        }
+        
+        stage('STUDY') {
+            steps {
+                script {
+                    echo "Studying ${params.SUBJECT} for ${params.STUDY_DURATION} minutes..."
+                    // Simulate studying (using seconds instead of minutes for demonstration)
+                    sleep(time: params.STUDY_DURATION.toInteger(), unit: 'SECONDS')
+                    TOTAL_STUDY_TIME += params.STUDY_DURATION.toInteger()
+                    echo "Total study time: ${TOTAL_STUDY_TIME} minutes"
+                }
+            }
+        }
+        
+        stage('TEST') {
+            steps {
+                script {
+                    echo "It's time for a test on ${params.SUBJECT}!"
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo "Study session completed. Total study time: ${TOTAL_STUDY_TIME} minutes"
+        }
+    }
+}
+
