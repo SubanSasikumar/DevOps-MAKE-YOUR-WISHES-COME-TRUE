@@ -1,1 +1,19 @@
+pipeline {
+    agent any
 
+    parameters {
+        choice(
+            name: 'MONTH', 
+            choices: ['July', 'August', 'September'], 
+            description: 'Choose the month to make your wishes come true'
+        )
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                echo "Pipeline started for the month: ${params.MONTH}"
+            }
+        }
+   }
+}
