@@ -14,6 +14,39 @@ pipeline {
             steps {
                 echo "Pipeline started for the month: ${params.MONTH}"
             }
+            script {
+                    if (params.MONTH == 'July') {
+                        echo 'Here are your objectives for the month of July - go to a concert and dance', 
+                        stage('Create and save a list of upcoming concert') {
+                            steps {
+                              echo 'Creating a list of upcoming concert'
+                              sleep 3
+                              echo 'Concert list created'
+                            }
+                        }
+                        stage('Organize saved Concert') {
+                            steps {
+                              echo 'Organizing saved concert'
+                              sleep 3
+                              echo 'Concert organized'
+                            }
+                        }
+                        stage('Share Concerts with Friends') {
+                            steps {
+                              echo 'Sharing saved concerts with friends'
+                              sleep 3
+                              echo 'Concerts shared'
+                            }
+                        }
+                    }
+                    if (params.MONTH == 'August') {
+                        echo 'Here are your objectives for the month of July', 
+                    }
+                    if (params.MONTH == 'September') {
+                        echo 'Here are your objectives for the month of July', 
+                    }
+            }
         }
-   }
+    }
 }
+
