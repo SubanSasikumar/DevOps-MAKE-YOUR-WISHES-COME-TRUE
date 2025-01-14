@@ -16,7 +16,6 @@ pipeline {
             }
         }
 
-        # July
         stage('July Objectives Overview') {
             when {
                 expression { params.MONTH == 'July' }
@@ -60,7 +59,6 @@ pipeline {
             }
         }
 
-        # August
         stage('August Objectives Overview') {
             when {
                 expression { params.MONTH == 'August' }
