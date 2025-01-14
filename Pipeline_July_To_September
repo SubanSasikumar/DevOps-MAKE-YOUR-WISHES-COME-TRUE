@@ -19,6 +19,13 @@ pipeline {
             }
         }
 
+        stage ('Check Date') {
+            steps {
+                check_deadline()
+            }
+            
+        }
+
         stage('July Objectives Overview') {
             when {
                 expression { params.MONTH == 'July' }
@@ -138,4 +145,14 @@ def process(String message1, String message2) {
     echo message1
     sleep 2
     echo message2
+}
+
+def check_deadline() {
+    def currentDate = new Date()
+    def currentDay = currentDate.format('d')
+    if (currentDay < 15) {
+        echo "Reminder: Today is ${currentDay}. Time is running out to achieve your objectives for this month"
+    } else {
+        echo "Today is ${currentDay}. The end of the month is near - make sur to complete your objectives !"
+    }
 }
