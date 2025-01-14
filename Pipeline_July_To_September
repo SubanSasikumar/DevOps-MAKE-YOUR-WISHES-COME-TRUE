@@ -16,12 +16,14 @@ pipeline {
             }
         }
 
+        # July
         stage('July Objectives Overview') {
             when {
                 expression { params.MONTH == 'July' }
             }
             steps {
                 echo 'Here are your objectives for the month of July'
+                echo 'Go to a concert and dance'
             }
         }
 
@@ -55,6 +57,50 @@ pipeline {
                 echo 'Sharing saved concerts with friends'
                 sleep 3
                 echo 'Concerts shared'
+            }
+        }
+
+        # August
+        stage('August Objectives Overview') {
+            when {
+                expression { params.MONTH == 'August' }
+            }
+            steps {
+                echo 'Here are your objectives for the month of August'
+                echo 'Sleep a night on the beach'
+            }
+        }
+
+        stage('Create and Save a List of Beaches') {
+            when {
+                expression { params.MONTH == 'August' }
+            }
+            steps {
+                echo 'Creating a list of  beaches'
+                sleep 3
+                echo 'List Created'
+            }
+        }
+
+        stage('Plan Mandatory Equipment') {
+            when {
+                expression { params.MONTH == 'August' }
+            }
+            steps {
+                echo 'Planning mandatory equipment for the beach'
+                sleep 3
+                echo 'List of mandatory equipment created'
+            }
+        }
+
+        stage('Check beach information') {
+            when {
+                expression { params.MONTH == 'August' }
+            }
+            steps {
+                echo 'Gathering information about beaches (Location, Weather, Sand/Rocks, Tide)'
+                sleep 3
+                echo 'Beach information checked and saved'
             }
         }
     }
