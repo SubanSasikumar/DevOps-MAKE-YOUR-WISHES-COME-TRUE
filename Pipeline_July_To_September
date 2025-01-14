@@ -32,7 +32,7 @@ pipeline {
             }
             steps {
                 echo 'Creating a list of upcoming concerts'
-                sleep 3
+                sleep 2
                 echo 'Concert list created'
             }
         }
@@ -43,7 +43,7 @@ pipeline {
             }
             steps {
                 echo 'Organizing saved concerts'
-                sleep 3
+                sleep 2
                 echo 'Concerts organized'
             }
         }
@@ -54,7 +54,7 @@ pipeline {
             }
             steps {
                 echo 'Sharing saved concerts with friends'
-                sleep 3
+                sleep 2
                 echo 'Concerts shared'
             }
         }
@@ -75,7 +75,7 @@ pipeline {
             }
             steps {
                 echo 'Creating a list of  beaches'
-                sleep 3
+                sleep 2
                 echo 'List Created'
             }
         }
@@ -86,7 +86,7 @@ pipeline {
             }
             steps {
                 echo 'Planning mandatory equipment for the beach'
-                sleep 3
+                sleep 2
                 echo 'List of mandatory equipment created'
             }
         }
@@ -97,9 +97,54 @@ pipeline {
             }
             steps {
                 echo 'Gathering information about beaches (Location, Weather, Sand/Rocks, Tide)'
-                sleep 3
+                sleep 2
                 echo 'Beach information checked and saved'
             }
         }
+
+        stage('September Objectives Overview') {
+            when {
+                expression { params.MONTH == 'September' }
+            }
+            steps {
+                echo 'Here are your objectives for the month of September'
+                echo 'Discover the World'
+            }
+        }
+
+        stage('Create and Save a List of Destinations') {
+            when {
+                expression { params.MONTH == 'September' }
+            }
+            steps {
+                echo 'Creating a list of destinations for exploration'
+                sleep 2
+                echo 'List of destinations created and saved'
+            }
+        }
+
+        stage('Create a List of Activities for Each Destination') {
+            when {
+                expression { params.MONTH == 'September' }
+            }
+            steps {
+                echo 'Creating a list of activities for each destination'
+                sleep 2
+                echo 'Activities for destinations planned and saved'
+            }
+        }
+
+        stage('View Key Details About Each Destination') {
+            when {
+                expression { params.MONTH == 'September' }
+            }
+            steps {
+                echo 'Gathering key details about destinations (local culture, weather, landmarks)'
+                sleep 2
+                echo 'Destination details reviewed and saved'
+            }
+        }
+
+
     }
 }
