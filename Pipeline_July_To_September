@@ -34,7 +34,7 @@ pipeline {
                 expression { params.MONTH == 'July' }
             }
             steps {
-                process('Creating a list of upcoming concerts', 'Concert list created')
+                process('   Creating a list of upcoming concerts', '    Concert list created')
             }
         }
 
@@ -43,7 +43,7 @@ pipeline {
                 expression { params.MONTH == 'July' }
             }
             steps {
-                process('Organizing saved concerts','Concerts organized' )
+                process('   Organizing saved concerts','    Concerts organized' )
             }
         }
         
@@ -52,7 +52,7 @@ pipeline {
                 expression { params.MONTH == 'July' }
             }
             steps {
-                process('Sharing saved concerts with friends', 'Concerts shared')
+                process('   Sharing saved concerts with friends', ' Concerts shared')
             }
         }
 
@@ -71,7 +71,7 @@ pipeline {
                 expression { params.MONTH == 'August' }
             }
             steps {
-                process('Creating a list of  beaches',  'List Created')
+                process('   Creating a list of  beaches',  '    List Created')
             }
         }
 
@@ -80,7 +80,7 @@ pipeline {
                 expression { params.MONTH == 'August' }
             }
             steps {
-                process('Planning mandatory equipment for the beach', 'List of mandatory equipment created')
+                process('   Planning mandatory equipment for the beach', '  List of mandatory equipment created')
             }
         }
 
@@ -89,7 +89,7 @@ pipeline {
                 expression { params.MONTH == 'August' }
             }
             steps {
-                process('Gathering information about beaches (Location, Weather, Sand/Rocks, Tide)', 'Beach information checked and saved')
+                process('   Gathering information about beaches (Location, Weather, Sand/Rocks, Tide)', '   Beach information checked and saved')
             }
         }
 
@@ -108,7 +108,7 @@ pipeline {
                 expression { params.MONTH == 'September' }
             }
             steps {
-                process('Creating a list of destinations for exploration', 'List of destinations created and saved')
+                process('   Creating a list of destinations for exploration', ' List of destinations created and saved')
             }
         }
 
@@ -117,7 +117,7 @@ pipeline {
                 expression { params.MONTH == 'September' }
             }
             steps {
-                process('Creating a list of activities for each destination', 'Activities for destinations planned and saved')
+                process('   Creating a list of activities for each destination', '  Activities for destinations planned and saved')
             }
         }
 
@@ -126,7 +126,7 @@ pipeline {
                 expression { params.MONTH == 'September' }
             }
             steps {
-                process('Gathering key details about destinations (local culture, weather, landmarks)', 'Destination details reviewed and saved')
+                process('   Gathering key details about destinations (local culture, weather, landmarks)', '    Destination details reviewed and saved')
             }
         }
 
