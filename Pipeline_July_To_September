@@ -149,7 +149,7 @@ def process(String message1, String message2) {
 
 def check_deadline() {
     def currentDate = new Date()
-    def currentDay = currentDate.format('d')
+    def currentDay = currentDate.format('d').toInteger()
     if (currentDay < 15) {
         echo "Reminder: Today is ${currentDay}. Time is running out to achieve your objectives for this month"
     } else {
