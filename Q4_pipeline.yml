@@ -1,53 +1,83 @@
-pipeline {
-    agent any
-    parameters {
-        string(name: 'SUBJECT', description: 'Which subject do you want to study?')
-        choice(name: 'STUDY_DURATION', choices: ['15', '30', '45', '60'], description: 'Choose study duration in minutes')
-        text(name: 'STUDY_NOTES', description: 'Enter your study notes')
-        booleanParam(name: 'SKIP_TEST', description: 'Want to skip the knowledge test?')
-    }
-    
-    environment {
-        TOTAL_STUDY_TIME = 0
-    }
-    
-    stages {
-        stage('Prepare Study Session') {
-            steps {
-                script {
-                    echo "Subject: ${params.SUBJECT}"
-                    echo "Study Duration: ${params.STUDY_DURATION} minutes"
-                    echo "Study Notes: ${params.STUDY_NOTES}"
-                    echo "Skip Test: ${params.SKIP_TEST}"
-                }
-            }
-        }
+    pipeline {
+        agent any
         
-        stage('STUDY') {
-            steps {
-                script {
-                    echo "Studying ${params.SUBJECT} for ${params.STUDY_DURATION} minutes..."
-                    // Simulate studying (using seconds instead of minutes for demonstration)
-                    sleep(time: params.STUDY_DURATION.toInteger(), unit: 'SECONDS')
-                    TOTAL_STUDY_TIME += params.STUDY_DURATION.toInteger()
-                    echo "Total study time: ${TOTAL_STUDY_TIME} minutes"
-                }
-            }
-        }
-        
-        stage('TEST') {
-            steps {
-                script {
-                    echo "It's time for a test on ${params.SUBJECT}!"
-                }
-            }
-        }
+        parameters {
+        choice(
+    name: 'MONTH',
+    choices: ['October', 'November', 'December'],
+    description: 'Choose the month for your study plan'
+        )
+        choice(
+    name: 'SUBJECT',
+    choices: ['Spanish', 'Astrophysics', 'Mathematics', 'History', 'Geography', 'DevOps'],
+    description: 'Select the subject to study'
+        )
+    string(name: 'NAME', description: 'Please tell me your name')
+    string(name: 'SURNAME', description: 'Please tell me your surname')
+    string(name: 'AGE', description: 'Please tell me your age')
     }
-    
-    post {
-        always {
-            echo "Study session completed. Total study time: ${TOTAL_STUDY_TIME} minutes"
-        }
-    }
-}
 
+        stages {
+        stage('Setup') {
+        steps {
+        echo "Hello ${params.NAME} ${params.SURNAME} !"
+        echo "You are ${params.AGE} and it's time to make your wishes come true !"
+    echo "Study pipeline started for the month: ${params.MONTH}"
+    echo "Selected subject: ${params.SUBJECT}"
+    }
+    }
+
+        stage('October Plan') {
+        when {
+        expression { params.MONTH == 'October' }
+    }
+        stages {
+        stage('Choose Subject') {
+        steps {
+    echo "Selected subject for October study: ${params.SUBJECT}"
+    }
+    }
+        stage('Study') {
+        steps {
+        echo "Commencing study session on ${params.SUBJECT}"
+        sleep 10 // 10 seconds study time
+        echo "Completed study session on ${params.SUBJECT}"
+    }
+    }
+        stage('Quiz') {
+        steps {
+        echo "Initiating knowledge test on ${params.SUBJECT}"
+        sleep 5
+    echo "Quiz on ${params.SUBJECT} completed. Score: 85%"
+    }
+    }
+    }
+    }
+
+        stage('November Plan') {
+        when {
+        expression { params.MONTH == 'November' }
+    }
+        steps {
+        echo "November study plan for ${params.SUBJECT}"
+        // Add November-specific stages here
+    }
+    }
+
+        stage('December Plan') {
+        when {
+        expression { params.MONTH == 'December' }
+    }
+        steps {
+        echo "December study plan for ${params.SUBJECT}"
+        // Add December-specific stages here
+    }
+    }
+    }
+
+        post {
+        success {
+        echo "Study pipeline for ${params.SUBJECT} in ${params.MONTH} completed successfully!"
+    }
+    }
+    }
