@@ -2,16 +2,19 @@ pipeline {
     agent any
 
     parameters {
-        choice(
-            name: 'MONTH', 
-            choices: ['July', 'August', 'September'], 
-            description: 'Choose the month to make your wishes come true'
-        )
+        
+        string(name: 'NAME', description: 'Please tell me your name')
+        string(name: 'SURNAME', description: 'Please tell me your surname')
+        string(name: 'AGE', description: 'Please tell me your age')
+        choice(name: 'MONTH', choices: ['July', 'August', 'September'], description: 'Choose the month to make your wishes come true')
+
     }
 
     stages {
         stage('Setup') {
             steps {
+                echo "Hello ${params.NAME} ${params.SURNAME} !"
+                echo "Your are ${params.AGE} and it's time to make your wishes comme true !"
                 echo "Pipeline started for the month: ${params.MONTH}"
             }
         }
