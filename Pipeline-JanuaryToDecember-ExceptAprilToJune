@@ -1,0 +1,247 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'MONTH', choices: [ 'January', 'February', 'March', 'July', 'August', 'September', 'October', 'November', 'December'], description: 'Choose the month to make your wishes come true')
+        string(name: 'NAME', description: 'Please tell me your name')
+        string(name: 'SURNAME', description: 'Please tell me your surname')
+        string(name: 'AGE', description: 'Please tell me your age')
+        choice(name: 'SUBJECT', choices: ['Spanish', 'Astrophysics', 'Mathematics', 'History', 'Geography', 'DevOps'], description: 'Select the subject to study in October')
+        choice(name: 'INSTRUMENT', choices: ['Guitar', 'Piano', 'Violin', 'Drums', 'Flute'], description: 'Select the instrument to practice in November')
+    }
+
+    stages {
+        stage('Setup') {
+            steps {
+                echo "Hello ${params.NAME} ${params.SURNAME}!"
+                echo "You are ${params.AGE} and it's time to make your wishes come true!"
+                echo "Pipeline started for the month: ${params.MONTH}"
+            }
+        }
+
+        stage ('Check Date') {
+            steps {
+                check_deadline()
+            }
+        }
+
+        stage('January Plan') {
+            when {
+                expression { params.MONTH == 'January' }
+            }
+            stages {
+                stage('Create Daily Diary') {
+                    steps {
+                        process('==== January: Create Daily Diary ====', 'Diary creation step done!')
+                    }
+                }
+                stage('Get Daily Notifications') {
+                    steps {
+                        process('==== January: Set Up Daily Notifications ====', 'Daily notifications configured!')
+                    }
+                }
+                stage('Secure the Diary') {
+                    steps {
+                        process('==== January: Securing the Diary ====', 'Diary is now password-protected and/or encrypted!')
+                    }
+                }
+            }
+        }
+
+        stage('February Plan') {
+            when {
+                expression { params.MONTH == 'February' }
+            }
+            stages {
+                stage('Plan Budget') {
+                    steps {
+                        process('==== February: Planning Redecorating Budget ====', 'Budget planning complete!')
+                    }
+                }
+                stage('Organize Step-by-step Schedule') {
+                    steps {
+                        process('==== February: Creating Schedule for Each Room ====', 'Schedule for redecorating is ready!')
+                    }
+                }
+                stage('Choose Color Palette') {
+                    steps {
+                        process('==== February: Selecting Color Palette for Each Room ====', 'Color palette selection done!')
+                    }
+                }
+            }
+        }
+
+        stage('March Plan') {
+            when {
+                expression { params.MONTH == 'March' }
+            }
+            stages {
+                stage('Schedule Physical Activities') {
+                    steps {
+                        process('==== March: Scheduling Daily Physical Activities ====', 'Physical activities scheduled!')
+                    }
+                }
+                stage('Track Hydration & Nutrition') {
+                    steps {
+                        process('==== March: Tracking Hydration and Nutrition ====', 'Hydration & nutrition tracking implemented!')
+                    }
+                }
+                stage('Monitor Sleep Quality') {
+                    steps {
+                        process('==== March: Monitoring Sleep Quality and Duration ====', 'Sleep monitoring set up!')
+                    }
+                }
+            }
+        }
+
+
+        stage('July Objectives Overview') {
+            when {
+                expression { params.MONTH == 'July' }
+            }
+            stages {
+                stage('Overview') {
+                    steps {
+                        echo 'Here are your objectives for the month of July'
+                        echo 'Go to a concert and dance'
+                    }
+                }
+                stage('Plan Concerts') {
+                    steps {
+                        process('Creating a list of upcoming concerts', 'Concert list created')
+                        process('Organizing saved concerts', 'Concerts organized')
+                        process('Sharing saved concerts with friends', 'Concerts shared')
+                    }
+                }
+            }
+        }
+
+        stage('August Objectives Overview') {
+            when {
+                expression { params.MONTH == 'August' }
+            }
+            stages {
+                stage('Overview') {
+                    steps {
+                        echo 'Here are your objectives for the month of August'
+                        echo 'Sleep a night on the beach'
+                    }
+                }
+                stage('Plan Beach Visit') {
+                    steps {
+                        process('Creating a list of beaches', 'List created')
+                        process('Planning mandatory equipment for the beach', 'List of mandatory equipment created')
+                        process('Gathering information about beaches (Location, Weather, Sand/Rocks, Tide)', 'Beach information checked and saved')
+                    }
+                }
+            }
+        }
+
+        stage('September Objectives Overview') {
+            when {
+                expression { params.MONTH == 'September' }
+            }
+            stages {
+                stage('Overview') {
+                    steps {
+                        echo 'Here are your objectives for the month of September'
+                        echo 'Discover the World'
+                    }
+                }
+                stage('Plan Exploration') {
+                    steps {
+                        process('Creating a list of destinations for exploration', 'List of destinations created and saved')
+                        process('Creating a list of activities for each destination', 'Activities for destinations planned and saved')
+                        process('Gathering key details about destinations (local culture, weather, landmarks)', 'Destination details reviewed and saved')
+                    }
+                }
+            }
+        }
+
+        stage('October Plan') {
+            when {
+                expression { params.MONTH == 'October' }
+            }
+            stages {
+                stage('Choose Subject') {
+                    steps {
+                        process('Selected subject for October study: ${params.SUBJECT}', 'Subject chosen successfully')
+                    }
+                }
+                stage('Study') {
+                    steps {
+                        process('Commencing study session on ${params.SUBJECT}', 'Completed study session on ${params.SUBJECT}')
+                    }
+                }
+                stage('Quiz') {
+                    steps {
+                        process('Initiating knowledge test on ${params.SUBJECT}', 'Quiz on ${params.SUBJECT} completed. Score: 85%')
+                    }
+                }
+            }
+        }
+
+        stage('November Plan') {
+            when {
+                expression { params.MONTH == 'November' }
+            }
+            stages {
+                stage('Practice Instrument') {
+                    steps {
+                        process('Practicing the ${params.INSTRUMENT}', 'Completed instrument practice')
+                    }
+                }
+                stage('Play Easy Song') {
+                    steps {
+                        process('Playing an easy song to learn on the ${params.INSTRUMENT}', 'Finished playing the easy song')
+                    }
+                }
+            }
+        }
+
+        stage('December Plan') {
+            when {
+                expression { params.MONTH == 'December' }
+            }
+            stages {
+                stage('Breath for 5 Minutes') {
+                    steps {
+                        process('Taking 5 minutes to breathe', 'Completed 5 minutes of breathing')
+                    }
+                }
+                stage('Write Feelings in Journal') {
+                    steps {
+                        process('Writing my feelings into a journal', 'Completed journaling my feelings')
+                    }
+                }
+                stage('Visualize Mood Progress') {
+                    steps {
+                        process('Visualizing my mood progress to see what to improve', 'Completed mood progress visualization')
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline for ${params.MONTH} completed successfully!"
+        }
+    }
+}
+
+def process(String message1, String message2) {
+    echo message1
+    sleep 2
+    echo message2
+}
+
+def check_deadline() {
+    def currentDate = new Date()
+    def currentDay = currentDate.format('d').toInteger()
+    if (currentDay > 15) {
+        echo "Reminder: Today is ${currentDay}. Time is running out to achieve your objectives for this month"
+    } else {
+        echo "Today is ${currentDay}. The end of the month is near - make sur to complete your objectives !"
+    }
+}
