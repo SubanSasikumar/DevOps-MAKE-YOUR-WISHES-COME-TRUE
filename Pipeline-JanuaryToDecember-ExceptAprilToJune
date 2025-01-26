@@ -132,9 +132,9 @@ pipeline {
                         process('Scheduling two days', 'Two new activities scheduled!')
                     }
                 }
-                stage('Set weekly notifications suggesting act of kindness') {
+                stage('Suggest a new recipe') {
                     steps {
-                        process('Setting weekly notifications suggesting an act of kindness from the list', 'Weekly notifications set!')
+                        process('Suggesting a new recipe from a new cuisine', 'New recipe tried')
                     }
                 }
             }
