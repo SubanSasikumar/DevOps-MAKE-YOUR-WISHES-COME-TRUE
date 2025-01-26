@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'MONTH', choices: [ 'January', 'February', 'March', 'July', 'August', 'September', 'October', 'November', 'December'], description: 'Choose the month to make your wishes come true')
+        choice(name: 'MONTH', choices: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], description: 'Choose the month to make your wishes come true')
         string(name: 'NAME', description: 'Please tell me your name')
         string(name: 'SURNAME', description: 'Please tell me your surname')
         string(name: 'AGE', description: 'Please tell me your age')
@@ -89,6 +89,75 @@ pipeline {
                 stage('Monitor Sleep Quality') {
                     steps {
                         process('==== March: Monitoring Sleep Quality and Duration ====', 'Sleep monitoring set up!')
+                    }
+                }
+            }
+        }
+
+        stage('April Plan') {
+            when {
+                expression { params.MONTH == 'April' }
+            }
+            stages {
+                stage('Get monthly reminders to donate') {
+                    steps {
+                        process('Set up Monthly Notifications to Donate', 'Monthly notifications configured!')
+                    }
+                }
+                stage('List of acts of kindness') {
+                    steps {
+                        process('Creating list of acts of kindness from others', 'List completed!')
+                    }
+                }
+                stage('Set weekly notifications suggesting act of kindness') {
+                    steps {
+                        process('Setting weekly notifications suggesting an act of kindness from the list', 'Weekly notifications set!')
+                    }
+                }
+            }
+        }
+
+        stage('May Plan') {
+            when {
+                expression { params.MONTH == 'May' }
+            }
+            stages {
+                stage('Take a quiz to find a new hobby') {
+                    steps {
+                        process('Taking the quiz', 'Quiz completed with a new hobby found!')
+                    }
+                }
+                stage('Schedule 2 days to try 2 new hobbies') {
+                    steps {
+                        process('Scheduling two days', 'Two new activities scheduled!')
+                    }
+                }
+                stage('Set weekly notifications suggesting act of kindness') {
+                    steps {
+                        process('Setting weekly notifications suggesting an act of kindness from the list', 'Weekly notifications set!')
+                    }
+                }
+            }
+        }
+
+        stage('June Plan') {
+            when {
+                expression { params.MONTH == 'June' }
+            }
+            stages {
+                stage('Plan trip') {
+                    steps {
+                        process('Planning week-end trip with friends or family', 'Trip with loved ones planned!')
+                    }
+                }
+                stage('Get notifications to call family') {
+                    steps {
+                        process('Setting up weekly notifications to call family members living far away', 'Notifications set!')
+                    }
+                }
+                stage('Re-contact old friend') {
+                    steps {
+                        process('Re-contacting old friend', 'Back in touch with friend!')
                     }
                 }
             }
