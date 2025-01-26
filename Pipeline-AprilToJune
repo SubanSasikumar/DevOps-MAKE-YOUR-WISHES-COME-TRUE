@@ -1,0 +1,155 @@
+pipeline {
+        agent any
+                
+        parameters {
+                choice(name: 'MONTH', choices: ['April', 'May', 'June'], description: 'Choose the month to make your wishes come true')
+                string(name: 'NAME', description: 'Please tell me your name')
+                string(name: 'SURNAME', description: 'Please tell me your surname')
+                string(name: 'AGE', description: 'Please tell me your age')
+        }
+
+        stages {
+                stage('Setup') {
+                        steps {
+                                echo "Hello ${params.NAME} ${params.SURNAME} !"
+                                echo "You are ${params.AGE} and it's time to make your wishes come true !"
+                                echo "Wishes pipeline started for the month: ${params.MONTH}"
+                        }
+                }
+
+        
+        
+                /*
+
+                April Plan: Be kind
+                User Stories:
+                - Get monthly reminders to donate
+                - List small things people did that made me happy
+                - Get weekly notifications suggesting small act of kindness.
+
+
+                */
+
+
+
+
+                stage('April Plan') {
+                        when {
+                                expression { params.MONTH == 'April' }
+                        }
+                        stages {
+
+                                stage('Get monthly reminders to donate') {
+                                        steps {
+                                                echo "Set up Monthly Notifications to Donate ===="
+                                                sleep 10
+                                                echo "Monthly notifications configured!"
+                                        }
+                                }
+
+                                stage('List of acts of kindness') {
+                                        steps {
+                                                echo "Creating list of acts of kindness from others"
+                                                sleep 10
+                                                echo "List completed!"
+                                        }
+                                }
+
+                                stage('Set weekly notifications suggesting act of kindness') {
+                                        steps {
+                                                echo "Setting weekly notifications suggesting an act of kindness from the list"
+                                                sleep 10
+                                                echo "Weekly notifications set!"
+                                        }
+                                }
+                        }
+                }
+
+
+
+                /*
+
+                May Plan: Do something you've never done before
+                User Stories:
+                - Take a quiz to get a new hobby suggestion
+                - Schedule 2 days to try 2 new hobbies
+                - Get a recipe suggestion from a cuisin I've never tried
+
+
+                */
+
+
+
+                stage('May Plan') {
+                        when {
+                                expression { params.MONTH == 'May' }
+                        }
+                        stages {
+                                stage('Take a quiz to find a new hobby') {
+                                        steps {
+                                                echo "Taking the quiz"
+                                                sleep 10
+                                                echo "Quiz completed with a new hobby found!"
+                                        }
+                                }
+                                stage('Schedule 2 days to try 2 new hobbies') {
+                                        steps {
+                                                echo "Scheduling two days"
+                                                sleep 10
+                                                echo "Two new activities scheduled!"
+                                        }
+                                }
+                        }
+                }
+
+
+                /*
+
+                June Plan: Spend time with yours
+                User Stories:
+                - Plan a trip with loved ones
+                - Get weekly reminders to call family members living far away
+                - Be reminded to re-contact old friend.
+
+
+                */
+
+
+
+
+                stage('June Plan') {
+                        when {
+                                expression { params.MONTH == 'June' }
+                        }
+                        stages {
+                                stage('Plan trip') {
+                                        steps {
+                                                echo "Planning week-end trip with friends or family"
+                                                sleep 10
+                                                echo "Trip with loved ones planned!"
+                                        }
+                                }
+                                stage('Get notifications to call family') {
+                                        steps {
+                                                echo "Setting up weekly notifications to call family members living far away"
+                                                sleep 10
+                                                echo "Notifications set!"
+                                        }
+                                }
+                                stage('Re-contact old friend') {
+                                        steps {
+                                                echo "Re-contacting old friend"
+                                                sleep 10
+                                                echo "Back in touch with friend!"
+                                        }
+                                }
+                        }
+                }
+        }
+
+        post {
+                success {
+                        echo "Pipeline for ${params.MONTH} completed successfully!"
+                }
+        }
+}
