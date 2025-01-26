@@ -41,7 +41,7 @@ pipeline {
 
                                 stage('Get monthly reminders to donate') {
                                         steps {
-                                                echo "Set up Monthly Notifications to Donate ===="
+                                                echo "Set up Monthly Notifications to Donate"
                                                 sleep 10
                                                 echo "Monthly notifications configured!"
                                         }
@@ -73,7 +73,7 @@ pipeline {
                 User Stories:
                 - Take a quiz to get a new hobby suggestion
                 - Schedule 2 days to try 2 new hobbies
-                - Get a recipe suggestion from a cuisin I've never tried
+                - Get a recipe suggestion from a cuisine I've never tried
 
 
                 */
@@ -97,6 +97,13 @@ pipeline {
                                                 echo "Scheduling two days"
                                                 sleep 10
                                                 echo "Two new activities scheduled!"
+                                        }
+                                }
+                                stage('Suggest a new recipe') {
+                                        steps {
+                                                echo "Suggesting a new recipe from a new cuisine"
+                                                sleep 10
+                                                echo "New recipe tried"
                                         }
                                 }
                         }
